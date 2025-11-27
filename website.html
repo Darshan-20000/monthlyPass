@@ -1,53 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+
 <head>
     <meta charset="UTF-8" />
-
-    <!-- Required for iPhone fullscreen -->
-    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-
-    <!-- Status bar color + style -->
-    <!-- Options: default, black, black-translucent -->
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-
-    <!-- Your custom status bar background color (iOS 15+) -->
-    <!-- <meta name="theme-color" content="#202125"> -->
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Monthly Pass</title>
+
     <link rel="icon" type="image/x-icon" href="favicon.ico">
-
+    <meta name="theme-color" content="#ffffff">
+    <!-- <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"> -->
+    <meta name="apple-mobile-web-app-status-bar" content="#202125">
+    <meta name="theme-color" content="#202125">
+    <meta content='yes' name='mobile-web-app-capable' />
     <link rel="stylesheet" href="style.css">
-
     <script>
         const linkElement = document.createElement('link');
         linkElement.rel = 'stylesheet';
         linkElement.type = 'text/css';
         const timestamp = new Date().getTime();
-        linkElement.href = `color.css?t=${timestamp}`;
+        const updatedCssUrl = `color.css?t=${timestamp}`;
+        linkElement.href = updatedCssUrl;
         document.head.appendChild(linkElement);
     </script>
-
     <script>
         function openPopup() {
             document.getElementById('popupModal').style.display = 'flex';
         }
+
         function closePopup() {
             document.getElementById('popupModal').style.display = 'none';
         }
+
     </script>
 
-    <style>
-        /* Required so black-translucent blends correctly */
-        body {
-            /* background: #202125; */
-            padding-top: env(safe-area-inset-top);
-        }
-
-        .header {
-            /* background: #202125 !important; */
-        }
-    </style>
 </head>
 
 <body>
@@ -55,56 +41,79 @@
         function updateMonthProgress() {
             const now = new Date();
             const year = now.getFullYear();
-            const month = now.getMonth();
-            const totalDays = new Date(year, month + 1, 0).getDate();
+            const month = now.getMonth(); // 0-indexed
+            const totalDays = new Date(year, month + 1, 0).getDate(); // total days in month
             const currentDay = now.getDate();
 
+            // Calculate progress percentage
             const progress = (currentDay / totalDays) * 100;
 
-            document.querySelectorAll(".progress-fill").forEach(fill => {
+            // Update progress bar
+            const progressFills = document.querySelectorAll(".progress-fill");
+            progressFills.forEach(fill => {
                 fill.style.width = progress + "%";
             });
 
+
+            // Update remaining days
             const remainingDays = totalDays - currentDay;
-            document.querySelectorAll(".exp").forEach(exp => {
+            const expText = document.querySelector(".exp");
+            const expTexts = document.querySelectorAll(".exp");
+            expTexts.forEach(exp => {
                 exp.textContent = `Expires in ${remainingDays} day${remainingDays !== 1 ? 's' : ''}.`;
             });
+
         }
 
+        // Ensure DOM is ready
         window.onload = updateMonthProgress;
-    </script>
 
+    </script>
     <script>
-        const colors = ['#c488c4', '#44A25A', '#F2CED5', '#F5DF25', '#fe6366', '#0C84E9', '#8F8F8F'];
+        const colors = [
+            '#c488c4',
+            '#44A25A',
+            '#F2CED5',
+            '#F5DF25',
+            '#fe6366',
+            '#0C84E9',
+            '#8F8F8F' ];
         let index = 0;
 
         function changeColor() {
-            index = (index + 1) % colors.length;
-            document.documentElement.style.setProperty('--first', colors[index]);
+            index = (index + 1) % colors.length; // loop through colors
+            if (index == 0) {
+                document.documentElement.style.setProperty('--first', '#c488c4');
+            } else {
+                document.documentElement.style.setProperty('--first', colors[ index ]);
+            }
         }
 
         function increaseZone() {
-            document.querySelectorAll('.big').forEach(zone => {
-                let current = parseInt(zone.textContent, 10);
-                if (current < 9) zone.textContent = current + 1;
+            const zoneElements = document.querySelectorAll('.big'); // all .big elements
+            zoneElements.forEach(zoneElement => {
+                let currentZone = parseInt(zoneElement.textContent, 10);
+                if (currentZone < 9) currentZone += 1;
+                zoneElement.textContent = currentZone;
             });
         }
 
         function decreaseZone() {
-            document.querySelectorAll('.big').forEach(zone => {
-                let current = parseInt(zone.textContent, 10);
-                if (current > 1) zone.textContent = current - 1;
+            const zoneElements = document.querySelectorAll('.big'); // all .big elements
+            zoneElements.forEach(zoneElement => {
+                let currentZone = parseInt(zoneElement.textContent, 10);
+                if (currentZone > 1) currentZone -= 1;
+                zoneElement.textContent = currentZone;
             });
         }
+        // changeColor()
     </script>
-
-    <!-- Your main layout stays the same -->
     <div>
         <div class="container-new">
             <div class="subContainer">
                 <div class="header">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                        <path fill="#ffffff" d="M14.41 18.16L8.75 12.5l5.66-5.66l.7.71l-4.95 4.95l4.95 4.95z"/>
+                        <path fill="#ffffff" d="M14.41 18.16L8.75 12.5l5.66-5.66l.7.71l-4.95 4.95l4.95 4.95z" />
                     </svg>
                     <h2>Monthly Pass</h2>
                     <div class="right-empty"></div>
@@ -114,6 +123,7 @@
             <div class="card">
                 <div class="top-section">
                     <div class="qr-box">
+                        <!-- <div class="qr-inner"></div> -->
                         <div class="qr-inner">
                             <a href="#" onclick="openPopup(); return false;">
                                 <img class="qr-code" src="qr.png" alt="QR Code">
@@ -142,6 +152,7 @@
                     </div>
                 </div>
 
+
                 <div>
                     <div class="color-strip">
                         <div class="color-block-new red"></div>
@@ -159,7 +170,6 @@
                 </div>
             </div>
         </div>
-
         <div class="popupModal" id="popupModal">
             <div class="modal-top-section">
                 <div class="modal-header">
@@ -167,9 +177,13 @@
                 </div>
                 <div class="modal-qr-box">
                     <div class="modal-qr-inner">
+                        <!-- <a href="#" onclick="openPopup(); return false;"> -->
                         <img class="modal-qr-code" src="inner-qr.png" alt="QR Code">
+                        <!-- </a> -->
                     </div>
                 </div>
+
+                <!-- <div class="tap-to-enlarge-new">Tap to enlarge</div> -->
 
                 <div class="modal-divider"></div>
 
@@ -186,13 +200,13 @@
                 </div>
             </div>
 
+
             <div class="modal-bottom-section">
                 <div class="modal-color-strip">
                     <div class="color-block-new red"></div>
                     <div class="color-block-new green"></div>
                     <div class="color-block-new blue"></div>
                 </div>
-
                 <div class="modal-progress-section">
                     <div class="progress-bar">
                         <div class="progress-fill"></div>
@@ -203,7 +217,7 @@
                 <div class="btn-view">
                     <div class="back-btn" onclick="closePopup()">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                            <path fill="#ffffff" d="M14.41 18.16L8.75 12.5l5.66-5.66l.7.71l-4.95 4.95l4.95 4.95z"/>
+                            <path fill="#ffffff" d="M14.41 18.16L8.75 12.5l5.66-5.66l.7.71l-4.95 4.95l4.95 4.95z" />
                         </svg>
                         Back to ticket
                     </div>
@@ -212,4 +226,5 @@
         </div>
     </div>
 </body>
+
 </html>
