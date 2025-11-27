@@ -4,27 +4,14 @@
 
 <head>
     <meta charset="UTF-8" />
-    <!-- Viewport optimized for iOS full screen and notch -->
-    <meta name="viewport"
-        content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Monthly Pass</title>
 
-    <!-- Full-screen for iOS web apps -->
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-
-    <!-- Android full-screen -->
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="theme-color" content="#202125">
-
-    <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="favicon.ico">
-
-    <!-- Main CSS -->
+    <meta name="theme-color" content="#ffffff">
+    <meta content='yes' name='apple-mobile-web-app-capable' />
+    <meta content='yes' name='mobile-web-app-capable' />
     <link rel="stylesheet" href="style.css">
-
-    <!-- Dynamic timestamped CSS -->
     <script>
         const linkElement = document.createElement('link');
         linkElement.rel = 'stylesheet';
@@ -34,6 +21,17 @@
         linkElement.href = updatedCssUrl;
         document.head.appendChild(linkElement);
     </script>
+    <script>
+        function openPopup() {
+            document.getElementById('popupModal').style.display = 'flex';
+        }
+
+        function closePopup() {
+            document.getElementById('popupModal').style.display = 'none';
+        }
+
+    </script>
+
 </head>
 
 <body>
