@@ -365,14 +365,8 @@ a.back-font {
         }
 
         .popupModal {
-            /* display: none; 
-            position: absolute;
-            display: flex;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            right: 0; */
-            display: none;           /* Hides popup at page load */
+          
+            display: none;           
             flex-direction: column;
             justify-content: space-between;
             background-color: rgb(255, 255, 255);
