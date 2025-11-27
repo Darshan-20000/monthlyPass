@@ -104,8 +104,8 @@ body {
 }
 
 .qr-code {
-    max-width: 100%;
-    max-height: 100%;
+    margin-top: 4px;
+    height: 90%;
 }
 
 .tap-to-enlarge {
@@ -342,36 +342,46 @@ a.back-font {
             height: 85vh;
             background: #fff;
             border-radius: 15px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+            /* box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12); */
             padding: 20px 20px 5px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px;
         }
 
         /* QR SECTION */
         .qr-box {
             background: var(--first);
-            padding: 17px;
-            border-radius: 18px;
+            border-radius: 8px;
             margin: 0 auto;
         }
+
 
         .qr-inner {
             width: 145px;
             height: 145px;
+             align-content: center;
         }
 
         .popupModal {
+            /* display: none; 
             position: absolute;
-            transform: translate(-50%, -50%);
-            width: 100%;
-            background-color: rgb(255, 255, 255);
-            border: 2px solid rgb(204, 204, 204);
-            box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px;
-            padding: 20px 20px 20px 487px;
-            height: 142%;
             display: flex;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0; */
+            display: none;           /* Hides popup at page load */
+            flex-direction: column;
+            justify-content: space-between;
+            background-color: rgb(255, 255, 255);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
         }
 
         .tap {
@@ -385,8 +395,8 @@ a.back-font {
         .divider {
             width: 80%;
             border-bottom: 2px dashed #5555558c;
-     display: flex;
-     align-self: center;
+            display: flex;
+            align-self: center;
         }
 
         /* INTERSTATE LABEL */
@@ -500,11 +510,109 @@ a.back-font {
             font-family: "SF Pro Display Medium";
         }
 
+        .modal-top-section{
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            width: 85%;
+            padding: 0px 30px;
+        }
+
+         .modal-qr-box {
+            background: var(--first);
+            /* padding: 17px; */
+            border-radius: 10px;
+            margin: 0 auto;
+        }
+
+        .modal-qr-inner {
+            width: 250px;
+            height: 250px;
+            align-content: center;
+        }
+
+        .modal-qr-code {
+            margin-top: 4px;
+            height: 90%;
+
+        }  
+
+        .modal-divider{
+            width: 70%;
+            margin-top: 10px;
+            border-bottom: 1px dashed0 #5555558c;
+            display: flex;
+            align-self: center;
+        }
+
+        .modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            width: 100%;
+            margin-top: 15px;
+        }
+        .modal-header-text {
+            flex: 1;
+            font-size: 12px;
+            margin: 0px;
+            font-family: "SF Pro Display";
+            align-self: center;
+            text-align: center;
+            margin: 14px 10px ;
+        }
+
+        .modal-color-strip {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            width:97%;
+            margin-left: 1vw;
+            margin-bottom: 20px;
+            animation: blinker 1s linear infinite;
+        }
+
+        .modal-bottom-section{
+            padding: 0px 30px;
+                align-items: center;
+        }
+
+        .btn-view {
+            display: flex;
+            justify-content: center; /* centers horizontally */
+            margin-top: 15px;
+        }
+
+        .back-btn {
+            background: #0A457C;
+            color: #fff;
+            padding: 8px 20px;
+            font-size: 12px;
+            border: none;
+            border-radius: 5px;
+            display: inline-flex;
+            align-items: center;
+            margin-bottom: 20px;
+            align-self: center;
+        }
+
+        .back-btn .arrow {
+            font-size: 18px;
+            margin-right: 4px;
+        }
+
+        /* Button hover */
+        .back-btn:hover {
+            background: #08365f;
+        }
+
         /* MOBILE TWEAKS */
         @media (max-width: 600px) {
             .qr-inner {
-                width: 130px;
-                height: 130px;
+                width: 145px;
+                height: 145px;
+                align-content: center;
             }
 
             .interstate {
