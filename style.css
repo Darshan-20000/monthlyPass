@@ -29,12 +29,12 @@ body {
 }
 
 #splash-screen {
-    position: fixed;
+    /* position: fixed; */
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: white; /* or any color you like */
+    background-color: rgb(109, 11, 11); /* or any color you like */
     display: flex;
     align-items: center;
     justify-content: center;
