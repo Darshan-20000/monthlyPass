@@ -20,21 +20,21 @@ html {
 body {
     height: 100%;
   overflow: auto;
-  /* position : 'fixed'; */
+  position : 'fixed';
     font-family: 'SF Pro Display', sans-serif;
-    padding-top: constant(safe-area-inset-top); 
+    padding-top: constant(safe-area-inset-top); /* iOS 11.2+ */
     padding-top: env(safe-area-inset-top);
     background-color: #ffffff; 
     color: #000000; 
 }
 
 #splash-screen {
-    /* position: fixed; */
+    position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: rgb(109, 11, 11); /* or any color you like */
+    background-color: white; /* or any color you like */
     display: flex;
     align-items: center;
     justify-content: center;
