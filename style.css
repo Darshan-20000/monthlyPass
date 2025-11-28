@@ -309,7 +309,7 @@ a.back-font {
             align-items: center;
             justify-content: space-between;
             position: relative;
-            width: 100%;
+            width: 92%;
             margin: 10px 10px;
         }
 
@@ -328,7 +328,7 @@ a.back-font {
 
         
         .right-empty {
-            width: 24px; /* same width as icon to balance center */
+            width: 34px; /* same width as icon to balance center */
         }
 
         .header h2 {
