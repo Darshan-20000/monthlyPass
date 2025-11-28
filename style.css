@@ -1,7 +1,10 @@
-html {
-     height: 100%;
-  overflow: hidden; /* Prevents scrolling for the entire document */
-}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background-color: #1D86D7; /* fallback color */
+  }
 
 @font-face {
     font-family: 'SF Pro Display';
@@ -17,37 +20,36 @@ html {
     src: url("SF-Pro-Display-Medium.otf") format("opentype");
 }
 
-body {
+/* body {
     height: 100%;
   overflow: auto;
-  position : 'fixed';
-    font-family: 'SF Pro Display', sans-serif;
-    padding-top: constant(safe-area-inset-top); /* iOS 11.2+ */
+  font-family: 'SF Pro Display', sans-serif;
+  padding-top: constant(safe-area-inset-top); 
+  padding-top: env(safe-area-inset-top);
+  background-color: #1D86D7; 
+  color: #000000; 
+  } */
+  
+  
+  .safe-area {
+    /* position : 'fixed'; */
     padding-top: env(safe-area-inset-top);
-    background-color: #1D86D7; 
-    color: #000000; 
-}
+    padding-bottom: env(safe-area-inset-bottom);
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+    background-color: #f8f8f8; /* color of safe area */
+    min-height: 100vh;
+    box-sizing: border-box;
+  }
 
-#splash-screen {
+
+.body-lock-scroll {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: white; /* or any color you like */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1000; /* Ensure it's on top */
-    opacity: 1;
-    transition: opacity 0.5s ease-out; /* Smooth fade-out transition */
+    width: 100%;
+    overflow: hidden;
 }
 
-#splash-screen img {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: cover; /* Ensures the image covers the area without stretching */
-}
+
 
 .container{
     display: flex;
