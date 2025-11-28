@@ -361,6 +361,7 @@ a.back-font {
             background: var(--first);
             border-radius: 8px;
             margin: 0 auto;
+            padding: 5px;
         }
 
 
