@@ -395,7 +395,7 @@ a.back-font {
         /* DIVIDER */
         .divider {
             width: 80%;
-            border-bottom: 2px dashed #5555558c;
+            border-bottom: 1px dashed #5555558c;
             display: flex;
             align-self: center;
         }
