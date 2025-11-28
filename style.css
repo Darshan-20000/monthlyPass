@@ -32,7 +32,7 @@ html, body {
   
   
   .safe-area {
-    /* position : 'fixed'; */
+    position : 'fixed';
     padding-top: env(safe-area-inset-top);
     padding-bottom: env(safe-area-inset-bottom);
     padding-left: env(safe-area-inset-left);
@@ -231,7 +231,7 @@ html, body {
 
 .color-block-new {
     width: 34%;
-    height: 18px;
+    height: 20px;
 }
 
 .red {
@@ -309,9 +309,8 @@ a.back-font {
             align-items: center;
             justify-content: space-between;
             position: relative;
-            width: 95%;
-            margin: 15px 10px 10px 10px;
-
+            width: 100%;
+            margin: 10px 10px;
         }
 
         .header img {
@@ -322,14 +321,14 @@ a.back-font {
         }
 
         .left-icon {
-            width: 35px;
+            width: 24px;
             display: flex;
             justify-content: flex-start;
         }
 
         
         .right-empty {
-            width: 35px; /* same width as icon to balance center */
+            width: 24px; /* same width as icon to balance center */
         }
 
         .header h2 {
@@ -346,9 +345,9 @@ a.back-font {
             position: absolute;
             top: 7vh;
             width: 78vw;
-            height: 85vh;
+            height: 80vh;
             background: #fff;
-            border-radius: 10px;
+            border-radius: 15px;
             /* box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12); */
             padding: 20px 20px 5px;
             display: flex;
@@ -395,7 +394,7 @@ a.back-font {
         /* DIVIDER */
         .divider {
             width: 80%;
-            border-bottom: 1px dashed #5555558c;
+            border-bottom: 2px dashed #5555558c;
             display: flex;
             align-self: center;
         }
