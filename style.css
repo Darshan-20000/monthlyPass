@@ -1,254 +1,637 @@
-<!DOCTYPE html>
-<html lang="en">
-<meta http-equiv="content-type" content="text/html;charset=utf-8" />
 
-<head>
-    <meta charset="UTF-8" />
-    <title>Monthly Pass</title>
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta name="theme-color" content="#ffffff">
-    <meta content='yes' name='apple-mobile-web-app-capable' />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta content='yes' name='mobile-web-app-capable' />
-    <link rel="stylesheet" href="style.css">
-    <script>
-        const linkElement = document.createElement('link');
-        linkElement.rel = 'stylesheet';
-        linkElement.type = 'text/css';
-        const timestamp = new Date().getTime();
-        const updatedCssUrl = `color.css?t=${timestamp}`;
-        linkElement.href = updatedCssUrl;
-        document.head.appendChild(linkElement);
-    </script>
-    <script>
-        function openPopup() {
-            document.getElementById('popupModal').style.display = 'flex';
-        }
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background-color: #1D86D7; /* fallback color */
+  }
 
-        function closePopup() {
-            document.getElementById('popupModal').style.display = 'none';
-        }
+@font-face {
+    font-family: 'SF Pro Display';
+    font-style: normal;
+    font-weight: 200;
+    src: url("SF-Pro-Display-Bold.otf") format("opentype");
+}
 
-    </script>
-    <style>
-        html,
+@font-face {
+    font-family: 'SF Pro Display Medium';
+    font-style: normal;
+    font-weight: 100;
+    src: url("SF-Pro-Display-Medium.otf") format("opentype");
+}
+
+/* body {
+    height: 100%;
+  overflow: auto;
+  font-family: 'SF Pro Display', sans-serif;
+  padding-top: constant(safe-area-inset-top); 
+  padding-top: env(safe-area-inset-top);
+  background-color: #1D86D7; 
+  color: #000000; 
+  } */
+  
+  
+  .safe-area {
+    /* position : 'fixed'; */
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+    background-color: #f8f8f8; /* color of safe area */
+    min-height: 100vh;
+    box-sizing: border-box;
+  }
+
+
+.body-lock-scroll {
+    position: fixed;
+    width: 100%;
+    overflow: hidden;
+}
+
+
+
+.container{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-top: 0px;
+}
+
+.square {
+    width: 34%;
+    aspect-ratio: 1;
+    margin-left: 30px;
+    border-radius: 1.25vh;
+    display: flex;
+    text-align: center;
+    border-style: solid; 
+    border-width: 5px;
+    padding: 10px;
+}
+
+.square-text {
+    font-size: 50px;
+    font-weight: 200;
+}
+
+.ride-text {
+    font-size: 60px;
+    font-weight: 500;
+    display: flex; 
+    flex-direction: row;
+    margin-top: 20px;
+}
+
+.enlarged {
+    width: 100%;
+    height: 100%;
+    margin-top: 30vh;
+    aspect-ratio: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.enlarged img {
+    max-width: 56%;
+    max-height: 56%;
+}
+
+.qr-square {
+    width: 37%;
+    aspect-ratio: 1;
+    margin-right: 30px;
+    margin-top: 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+}
+
+.qr-code {
+    margin-top: 4px;
+    height: 90%;
+}
+
+.tap-to-enlarge {
+    font-size: 32px;
+    font-weight: lighter;
+    margin-top: 15px;
+    margin-bottom: 40px;
+    font-family: "SF Pro Display Medium";
+}
+
+.rectangle {
+    height: 20%;
+    display: grid;
+    margin-left: 30px;
+    margin-right: 30px;
+    background: linear-gradient(0deg, var(--first) 0%, white 40%, white 60%, var(--first) 100%);
+    border-radius: 1.25vh;
+    text-align: center;
+    font-weight: 500;
+    justify-items: center;
+}
+
+.overlay {
+    position: absolute;
+    margin-left: 30px;
+    margin-right: 30px;
+    width: 93%;
+    height: 17%;
+    z-index:1 ;
+    display: flex;
+    flex-direction: row;
+    border-radius: 1.25vh;
+    overflow: hidden;
+}
+
+.top-zone ,
+.bottom-zone {
+    flex: 1;
+}
+
+.rectangle-text1 {
+    font-size: 250px;
+    margin-bottom: -40px;
+    margin-top: -25px;
+    width: 200px;
+}
+
+.rectangle-text2 {
+    font-size: 65px;
+}
+
+.rectangle-text3 {
+    font-size: 32px;
+    padding-bottom :10px;
+}
+
+.rectangle-outside {
+    display: flex;
+    font-size: 44px;
+    padding-bottom :10px;
+    justify-content: center;
+    margin-top: 15px;
+    font-family: "SF Pro Display Medium";
+}
+
+.bottom-container {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.bottom-image {
+    width: 100%;
+}
+
+.expires-text {
+    font-size: 24px;
+    margin-top: 20px;
+    margin-bottom: 40px;
+    text-align: center;
+    font-weight: 500;
+    font-size: 45px;
+}
+
+.color-strip {
+    display: flex;
+    justify-content: space-between;
+    width:97%;
+    margin-left: 1vw;
+    margin-bottom: 20px;
+    animation: blinker 1s linear infinite;
+}
+
+@keyframes blinker {
+    0% {
+    opacity: 0;
+}
+49% {
+    opacity: 0;
+}
+50% {
+    opacity: 1;
+}
+100% {
+    opacity: 1;
+}
+}
+
+.color-block {
+    width: 34%;
+    height: 50px;
+}
+
+.color-block-new {
+    width: 34%;
+    height: 20px;
+}
+
+.red {
+    background: var(--stripone);
+}
+
+.green {
+    background: var(--striptwo);
+}
+
+.blue {
+    background: var(--stripthree);
+}
+
+.datetime {
+    margin-bottom: 25px;
+    font-weight: 500;
+    font-size: 60px;
+    width: "100%";
+}
+
+.time {
+    display: flex; 
+    justify-content: center;
+}
+
+.bip {
+    margin-top: -10px;
+    margin-bottom: 8px;
+    font-weight: 500;
+    font-size: 90px;
+    width: 100%;
+    text-align: center;
+}
+a.back-font {
+    font-size: 35px;
+    margin-left: -363px;
+    font-family: 'SF Pro Display Medium';
+}
+
+
+/* New app xtyle */
         body {
             margin: 0;
-            padding: 0;
+            background: #ffffff;
+            font-family: 'SF Pro Display', sans-serif;
+        }
+
+        /* TOP BLUE HEADER AREA */
+        .container-new {
+            width: 100vw;
+            display: flex;
+            justify-content: center;
+        }
+
+        .subContainer {
+            width: 100vw;
+            height: 32vh;
+            background: #1D86D7;
+            /* padding: 25px; */
+            color: #fff;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+        }
+
+        .top-section {
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            width: 100%;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            width: 100%;
+            margin-top: 15px;
+        }
+
+        .header img {
+            position: absolute;
+            left: 5px;
+            width: 26px;
+            cursor: pointer;
+        }
+
+        .left-icon {
+            width: 24px;
+            display: flex;
+            justify-content: flex-start;
+        }
+
+        
+        .right-empty {
+            width: 24px; /* same width as icon to balance center */
+        }
+
+        .header h2 {
+            flex: 1;
+            font-size: 14px;
+            margin: 0;
+            font-family: "SF Pro Display";
+            align-self: center;
+            text-align: center;
+        }
+
+        /* CARD */
+        .card {
+            position: absolute;
+            top: 7vh;
+            width: 78vw;
+            height: 85vh;
+            background: #fff;
+            border-radius: 15px;
+            /* box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12); */
+            padding: 20px 20px 5px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px;
+        }
+
+        /* QR SECTION */
+        .qr-box {
+            background: var(--first);
+            border-radius: 8px;
+            margin: 0 auto;
+        }
+
+
+        .qr-inner {
+            width: 145px;
+            height: 145px;
+             align-content: center;
+        }
+
+        .popupModal {
+          
+            display: none;           
+            flex-direction: column;
+            justify-content: space-between;
+            background-color: rgb(255, 255, 255);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
             height: 100%;
-            background-color: #1d86d7;
+            z-index: 9999;
         }
 
-        .safe-area {
-            padding-top: env(safe-area-inset-top);
-            background-color: #1d86d7;
-            /* color of safe area */
-            min-height: 100vh;
-            box-sizing: border-box;
+        .tap {
+            text-align: center;
+            font-size: 12px;
+            color: #555;
+            margin-top: 6px;
         }
 
-        .content {
-            background-color: #ffffff;
-            height: 430vh;
-            /* margin: 20px; */
-            /* padding: 20px; */
+        /* DIVIDER */
+        .divider {
+            width: 80%;
+            border-bottom: 2px dashed #5555558c;
+            display: flex;
+            align-self: center;
+        }
+
+        /* INTERSTATE LABEL */
+        .interstate {
+            margin-top: 10px;
+            text-align: center;
+            color: #FF3237;
+            font-size: 32px;
+            font-weight: 700;
+        }
+
+        /* ZONE + DATE */
+        .date-zone {
+            /* display: flex; */
+            justify-content: center;
+            margin-top: 5px;
+            position: relative;
+        }
+
+        .overlay-new {
+            position: absolute;
+            margin-left: 55px;
+            width: 75%;
+            height: 102%;
+            z-index: 1;
+            display: flex;
+            flex-direction: row;
+            border-radius: 1.25vh;
+            overflow: hidden;
+            margin-top: 5px
+        }
+
+        .date-box {
+            position: absolute;
+            left: 0px;
+            top: 45%;
+            transform: translateY(-50%);
+            background: var(--first) ;;
+            color: white;
+            /* padding: 8px 12px; */
+            border-radius: 5px;
+            border: 3px solid #000000;
+            text-align: center;
+            font-size: 20px;
+            font-weight: 700;
+            /* line-height: 14px; */
+        }
+
+        .zone-info {
+            text-align: center;
+        }
+
+        .zone-info .big {
+            font-size: 60px;
+            font-weight: 700;
+            margin-top: -10px;
+            margin-bottom: -5px;
+            font-family: "SF Pro Display";
+        }
+
+        .zone-info .small {
+            font-size: 16px;
+            font-weight: 600;
+            margin: 0;
+            /* letter-spacing: 0.5px; */
+            font-family: "SF Pro Display";
+        }
+
+        /* BOTTOM SECTION */
+        .progress {
+            width: 85%;
+            margin: 0 auto;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 4px;
+            background: #E3E3E3;
             border-radius: 10px;
-        }
-    </style>
-</head>
-
-<body>
-    <script>
-        function updateMonthProgress() {
-            const now = new Date();
-            const year = now.getFullYear();
-            const month = now.getMonth(); // 0-indexed
-            const totalDays = new Date(year, month + 1, 0).getDate(); // total days in month
-            const currentDay = now.getDate();
-
-            // Calculate progress percentage
-            const progress = (currentDay / totalDays) * 100;
-
-            // Update progress bar
-            const progressFills = document.querySelectorAll(".progress-fill");
-            progressFills.forEach(fill => {
-                fill.style.width = progress + "%";
-            });
-
-
-            // Update remaining days
-            const remainingDays = totalDays - currentDay;
-            const expText = document.querySelector(".exp");
-            const expTexts = document.querySelectorAll(".exp");
-            expTexts.forEach(exp => {
-                exp.textContent = `Expires in ${remainingDays} day${remainingDays !== 1 ? 's' : ''}.`;
-            });
-
+             overflow: hidden;
         }
 
-        // Ensure DOM is ready
-        window.onload = updateMonthProgress;
+        .progress-fill {
+            width: 0%;
+            height: 100%;
+            background: #1D86D7;
+            border-radius: 10px;
+            transition: width 0.4s ease;
+        }
+        
 
-    </script>
-    <script>
-        const colors = [
-            '#c488c4',
-            '#44A25A',
-            '#F2CED5',
-            '#F5DF25',
-            '#fe6366',
-            '#0C84E9',
-            '#8F8F8F' ];
-        let index = 0;
+        .tap-to-enlarge-new {
+            font-size: 12px;
+            font-weight: lighter;
+            font-family: "SF Pro Display Medium";
+        }
 
-        function changeColor() {
-            index = (index + 1) % colors.length; // loop through colors
-            if (index == 0) {
-                document.documentElement.style.setProperty('--first', '#c488c4');
-            } else {
-                document.documentElement.style.setProperty('--first', colors[ index ]);
+        .exp {
+            margin: 12px 0px 20px;
+            font-size: 21px;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        .link {
+            margin-top: 6px;
+            text-align: center;
+            font-size: 12px;
+            text-decoration: underline;
+            cursor: pointer;
+            font-family: "SF Pro Display Medium";
+        }
+
+        .modal-top-section{
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            width: 85%;
+            padding: 0px 30px;
+        }
+
+         .modal-qr-box {
+            background: var(--first);
+            /* padding: 17px; */
+            border-radius: 10px;
+            margin: 0 auto;
+        }
+
+        .modal-qr-inner {
+            width: 250px;
+            height: 250px;
+            align-content: center;
+        }
+
+        .modal-qr-code {
+            margin-top: 4px;
+            height: 90%;
+
+        }  
+
+        .modal-divider{
+            width: 70%;
+            margin-top: 10px;
+            border-bottom: 1px dashed0 #5555558c;
+            display: flex;
+            align-self: center;
+        }
+
+        .modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            width: 100%;
+            margin-top: 15px;
+        }
+        .modal-header-text {
+            flex: 1;
+            font-size: 12px;
+            margin: 0px;
+            font-family: "SF Pro Display";
+            align-self: center;
+            text-align: center;
+            margin: 14px 10px ;
+        }
+
+        .modal-color-strip {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            width:97%;
+            margin-left: 1vw;
+            margin-bottom: 20px;
+            animation: blinker 1s linear infinite;
+        }
+
+        .modal-bottom-section{
+            padding: 0px 30px;
+                align-items: center;
+        }
+
+        .btn-view {
+            display: flex;
+            justify-content: center; /* centers horizontally */
+            margin-top: 15px;
+        }
+
+        .back-btn {
+            background: #0A457C;
+            color: #fff;
+            padding: 8px 20px;
+            font-size: 12px;
+            border: none;
+            border-radius: 5px;
+            display: inline-flex;
+            align-items: center;
+            margin-bottom: 20px;
+            align-self: center;
+        }
+
+        .back-btn .arrow {
+            font-size: 18px;
+            margin-right: 4px;
+        }
+
+        /* Button hover */
+        .back-btn:hover {
+            background: #08365f;
+        }
+
+        /* MOBILE TWEAKS */
+        @media (max-width: 600px) {
+            .qr-inner {
+                width: 145px;
+                height: 145px;
+                align-content: center;
+            }
+
+            .interstate {
+                 margin-top: 10px;
+                text-align: center;
+                color: #FF3237;
+                font-size: 32px;
+                font-weight: 700;
+            }
+
+            .zone-info .big {
+                font-size: 52px;
+                 font-weight: 700;
+                margin-top: -10px;
+                margin-bottom: -5px;
+            }
+
+            .exp {
+                font-size: 18px;
             }
         }
-
-        function increaseZone() {
-            const zoneElements = document.querySelectorAll('.big'); // all .big elements
-            zoneElements.forEach(zoneElement => {
-                let currentZone = parseInt(zoneElement.textContent, 10);
-                if (currentZone < 9) currentZone += 1;
-                zoneElement.textContent = currentZone;
-            });
-        }
-
-        function decreaseZone() {
-            const zoneElements = document.querySelectorAll('.big'); // all .big elements
-            zoneElements.forEach(zoneElement => {
-                let currentZone = parseInt(zoneElement.textContent, 10);
-                if (currentZone > 1) currentZone -= 1;
-                zoneElement.textContent = currentZone;
-            });
-        }
-        // changeColor()
-    </script>
-    <div class="safe-area">
-        <div class="content">
-            <div class="container-new">
-                <div class="subContainer">
-                    <div class="header">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                            <path fill="#ffffff" d="M14.41 18.16L8.75 12.5l5.66-5.66l.7.71l-4.95 4.95l4.95 4.95z" />
-                        </svg>
-                        <h2>Monthly Pass</h2>
-                        <div class="right-empty"></div>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="top-section">
-                        <div class="qr-box">
-                            <!-- <div class="qr-inner"></div> -->
-                            <div class="qr-inner">
-                                <a href="#" onclick="openPopup(); return false;">
-                                    <img class="qr-code" src="qr.png" alt="QR Code">
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="tap-to-enlarge-new">Tap to enlarge</div>
-
-                        <div class="divider"></div>
-
-                        <div class="interstate">INTERSTATE</div>
-
-                        <div class="date-zone">
-                            <div class="date-box" onclick="changeColor()">Nov<br>2025</div>
-                            <div>
-                                <div class="overlay-new">
-                                    <div class="top-zone" onclick="decreaseZone()"></div>
-                                    <div class="bottom-zone" onclick="increaseZone()"></div>
-                                </div>
-                                <div class="zone-info">
-                                    <p class="big">2</p>
-                                    <p class="small">ZONE RIDE</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div>
-                        <div class="color-strip">
-                            <div class="color-block-new red"></div>
-                            <div class="color-block-new green"></div>
-                            <div class="color-block-new blue"></div>
-                        </div>
-                        <div class="bottom-section">
-                            <div class="progress-bar">
-                                <div class="progress-fill"></div>
-                            </div>
-                        </div>
-
-                        <!-- <div class="exp">Expires in 11 days.</div> -->
-                        <div class="link">View Onboard Validator Instructions</div>
-                    </div>
-                </div>
-            </div>
-            <div class="popupModal" id="popupModal">
-                <div class="modal-top-section">
-                    <div class="modal-header">
-                        <p class="modal-header-text">Monthly Pass</p>
-                    </div>
-                    <div class="modal-qr-box">
-                        <div class="modal-qr-inner">
-                            <!-- <a href="#" onclick="openPopup(); return false;"> -->
-                            <img class="modal-qr-code" src="inner-qr.png" alt="QR Code">
-                            <!-- </a> -->
-                        </div>
-                    </div>
-
-                    <!-- <div class="tap-to-enlarge-new">Tap to enlarge</div> -->
-
-                    <div class="modal-divider"></div>
-
-                    <div class="interstate">INTERSTATE</div>
-
-                    <div class="date-zone">
-                        <div class="date-box">Nov<br>2025</div>
-                        <div>
-                            <div class="zone-info">
-                                <p class="big">2</p>
-                                <p class="small">ZONE RIDE</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="modal-bottom-section">
-                    <div class="modal-color-strip">
-                        <div class="color-block-new red"></div>
-                        <div class="color-block-new green"></div>
-                        <div class="color-block-new blue"></div>
-                    </div>
-                    <div class="modal-progress-section">
-                        <div class="progress-bar">
-                            <div class="progress-fill"></div>
-                        </div>
-                    </div>
-
-                    <div class="exp">Expires in 11 days.</div>
-                    <div class="btn-view">
-                        <div class="back-btn" onclick="closePopup()">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                                <path fill="#ffffff" d="M14.41 18.16L8.75 12.5l5.66-5.66l.7.71l-4.95 4.95l4.95 4.95z" />
-                            </svg>
-                            Back to ticket
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</body>
-
-</html>
+    
