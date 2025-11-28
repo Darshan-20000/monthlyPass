@@ -1,5 +1,7 @@
 html {
-    overflow: hidden; /* Prevents scrolling for the entire document */
+     height: 100%;
+  overflow: hidden;
+   background-color: #1D86D7; /* Prevents scrolling for the entire document */
 }
 
 @font-face {
@@ -16,12 +18,31 @@ html {
     src: url("SF-Pro-Display-Medium.otf") format("opentype");
 }
 
-body {
+/* body {
+    height: 100%;
+  overflow: auto;
+  position : 'fixed';
     font-family: 'SF Pro Display', sans-serif;
-    padding-top: constant(safe-area-inset-top); /* iOS 11.2+ */
+    padding-top: constant(safe-area-inset-top); 
     padding-top: env(safe-area-inset-top);
-    background-color: #ffffff; /* Set background color to white */
-    color: #000000; /* Set text color to black */
+    background-color: #1D86D7; 
+    color: #000000; 
+} */
+
+body {
+    /* margin: 0; */
+    height: 100%;
+    overflow: auto;
+    background-color: #1D86D7; /* now applies */
+    font-family: 'SF Pro Display', sans-serif;
+    padding-top: env(safe-area-inset-top);
+}
+
+
+.body-lock-scroll {
+    position: fixed;
+    width: 100%;
+    overflow: hidden;
 }
 
 #splash-screen {
