@@ -343,9 +343,9 @@ a.back-font {
         /* CARD */
         .card {
             position: absolute;
-            top: 27vh;
+            top: 12vh;
             width: 78vw;
-            height: 85vh;
+            height: 75vh;
             background: #fff;
             border-radius: 15px;
             /* box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12); */
