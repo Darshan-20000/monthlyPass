@@ -23,7 +23,7 @@ body {
   position : 'fixed';
     font-family: 'SF Pro Display', sans-serif;
     padding-top: constant(safe-area-inset-top); /* iOS 11.2+ */
-     background-color: #ffffff; 
+     background-color: #1D86D7; 
   font-family: 'SF Pro Display', sans-serif;
     min-height: -webkit-fill-available;
 }
