@@ -2,8 +2,35 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Safe Area Example</title>
+   <meta charset="UTF-8" />
+    <title>Monthly Pass</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#ffffff">
+    <meta content='yes' name='apple-mobile-web-app-capable' />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta content='yes' name='mobile-web-app-capable' />
+    <link rel="stylesheet" href="style.css">
+    <script>
+        const linkElement = document.createElement('link');
+        linkElement.rel = 'stylesheet';
+        linkElement.type = 'text/css';
+        const timestamp = new Date().getTime();
+        const updatedCssUrl = `color.css?t=${timestamp}`;
+        linkElement.href = updatedCssUrl;
+        document.head.appendChild(linkElement);
+    </script>
+    <script>
+        function openPopup() {
+            document.getElementById('popupModal').style.display = 'flex';
+        }
+
+        function closePopup() {
+            document.getElementById('popupModal').style.display = 'none';
+        }
+
+    </script>
 <style>
   html, body {
     margin: 0;
