@@ -131,6 +131,8 @@ html, body {
 .qr-code {
     margin-top: 4px;
     height: 90%;
+background-color: #fff;
+    padding: 5px;
 }
 
 .tap-to-enlarge {
@@ -383,6 +385,9 @@ a.back-font {
             padding: 5px;
         }
 
+       
+        
+
 
         .qr-inner {
             width: 145px;
@@ -540,8 +545,8 @@ a.back-font {
 
          .modal-qr-box {
             background: var(--first);
-            /* padding: 17px; */
-            border-radius: 10px;
+            padding: 5px;
+            border-radius: 5px;
             margin: 0 auto;
         }
 
@@ -553,8 +558,9 @@ a.back-font {
 
         .modal-qr-code {
             margin-top: 4px;
-            height: 90%;
-
+    height: 90%;
+background-color: #fff;
+    padding: 5px;
         }  
 
         .modal-divider{
@@ -630,8 +636,8 @@ a.back-font {
         /* MOBILE TWEAKS */
         @media (max-width: 600px) {
             .qr-inner {
-                width: 145px;
-                height: 145px;
+                width: 200px;
+                height: 200px;
                 align-content: center;
             }
 

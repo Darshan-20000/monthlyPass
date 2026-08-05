@@ -40,6 +40,7 @@ function App() {
   const [timeLeft, setTimeLeft] = useState(repeatDuration); // Timer state
   const [currentTime, setCurrentTime] = useState(moment());
   const [state, setState] = useState(true); // Initial state set to true
+  const [changeState, setChangeState] = useState(true); // Initial state set to true
   const [intervalId, setIntervalId] = useState(null); // To store the interval ID for clearing it
 
   useEffect(() => {
@@ -132,9 +133,17 @@ function App() {
         </View>
 
         <View style={{flex: 1}}>
-          <Text style={{fontSize: 30, fontWeight: 'bold', alignSelf: 'center'}}>
-            INTRASTATE
-          </Text>
+          <TouchableOpacity onPress={() => setChangeState(!changeState)}>
+            <Text
+              style={{
+                fontSize: 30,
+                fontWeight: 'bold',
+                alignSelf: 'center',
+                color: changeState ? '#000' : 'red',
+              }}>
+              {changeState ? 'INTRASTATE' : 'INTERSTATE'}
+            </Text>
+          </TouchableOpacity>
           <View
             style={{
               height: 140,
@@ -158,26 +167,34 @@ function App() {
                   padding: 5,
                   alignContent: 'center',
                   alignItems: 'center',
-                  marginTop: 2,
+                  marginTop: changeState ? 2 : 10,
                   marginHorizontal: 15,
                   borderRadius: 15,
                 }}>
                 <Text
                   style={{
-                    fontSize: 90,
-                    lineHeight: 90,
+                    fontSize: changeState ? 90 : 100,
+                    lineHeight: changeState ? 90 : 100,
                     justifyContent: 'center',
                     textAlign: 'center',
                     fontWeight: 'bold',
                   }}>
                   {zone}
                 </Text>
-                <Text style={{fontSize: 22, fontWeight: 'bold', top: -20}}>
+                <Text
+                  style={{
+                    fontSize: changeState ? 22 : 25,
+                    lineHeight: changeState ? 22 : 25,
+                    fontWeight: 'bold',
+                    top: -20,
+                  }}>
                   ZONE RIDE
                 </Text>
-                <Text style={{fontSize: 11, fontWeight: 'bold', top: -20}}>
-                  **Not Valid for HBLR**
-                </Text>
+                {changeState && (
+                  <Text style={{fontSize: 11, fontWeight: 'bold', top: -20}}>
+                    **Not Valid for HBLR**
+                  </Text>
+                )}
               </View>
             </LinearGradient>
             <View

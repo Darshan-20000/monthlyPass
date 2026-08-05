@@ -66,6 +66,28 @@
             border-radius: 10px;
             transition: width 0.4s ease;
         }
+
+         .adult-text {
+    font-size: 14px;
+    font-weight: 100;
+    color: #000;
+    text-align: center;
+    font-family: 'SF Pro Display Medium';
+}
+
+.adult-selector {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    justify-content: center;
+}
+
+.invisible-btn {
+    width: 30px;
+    height: 30px;
+    opacity: 0;          /* hides the click area */
+    cursor: pointer;
+}
     </style>
 </head>
 
@@ -80,10 +102,40 @@
             document.getElementById('popupModal').style.display = 'none';
         }
     </script>
+    
+    <script>
+let currentAdults = 1;
+const maxAdults = 4;
+const minAdults = 1;
+
+function updateAdults() {
+    document.querySelectorAll(".adultCount").forEach(function(element) {
+        element.textContent = currentAdults + " Adult" ;
+    });
+}
+
+function increaseAdults() {
+    if (currentAdults < maxAdults) {
+        currentAdults++;
+    }
+    updateAdults();
+}
+
+function decreaseAdults() {
+    if (currentAdults > minAdults) {
+        currentAdults--;
+    }
+    updateAdults();
+}
+
+updateAdults();
+</script>
 
     <script>
         let isInterstateState = true;
         let countdownInterval;
+
+        
 
         function getShortMonthName(date) {
             return date.toLocaleString('en-US', { month: 'short' }).toUpperCase();
@@ -209,7 +261,7 @@
                         <div class="qr-box">
                             <div class="qr-inner">
                                 <a href="#" onclick="openPopup(); return false;">
-                                    <img class="qr-code" src="qr.png" alt="QR Code">
+                                    <img class="qr-code" src="inner-qr.png" alt="QR Code">
                                 </a>
                             </div>
                         </div>
@@ -219,19 +271,30 @@
 
                         <div class="interstate" onclick="toggleTicketType()">INTERSTATE</div>
 
-                        <div class="date-zone">
+                       <div class="date-zone">
                             <div class="date-box" onclick="changeColor()"></div>
-                            <div>
+
+                            <div class="zone-container">
                                 <div class="overlay-new">
                                     <div class="top-zone" onclick="decreaseZone()"></div>
                                     <div class="bottom-zone" onclick="increaseZone()"></div>
                                 </div>
+
                                 <div class="zone-info">
-                                    <p class="big">2</p>
+                                    <p class="big" id="zoneNumber">2</p>
                                     <p class="small">ZONE RIDE</p>
                                 </div>
                             </div>
                         </div>
+                       <div>
+<div class="adult-selector">
+   <div class="invisible-btn" onclick="decreaseAdults()"></div>
+
+<span class="adult-text adultCount">1 Adult</span>
+
+<div class="invisible-btn" onclick="increaseAdults()"></div>
+</div>
+</div>
                     </div>
 
                     <div>
@@ -256,7 +319,7 @@
             <div class="popupModal" id="popupModal">
                 <div class="modal-top-section">
                     <div class="modal-header">
-                        <p class="modal-header-text">Monthly Pass</p>
+                        <!-- <p class="modal-header-text">Monthly Pass</p> -->
                     </div>
 
                     <div class="modal-qr-box">
@@ -267,7 +330,7 @@
 
                     <div class="modal-divider"></div>
 
-                    <div class="interstate">INTERSTATE</div>
+                    <!-- <div class="interstate">INTERSTATE</div> -->
 
                     <div class="date-zone">
                         <div class="date-box"></div>
@@ -278,6 +341,13 @@
                             </div>
                         </div>
                     </div>
+                    <div class="adult-selector">
+    <div class="invisible-btn" onclick="decreaseAdults()"></div>
+
+<span class="adult-text adultCount">1 Adult</span>
+
+<div class="invisible-btn" onclick="increaseAdults()"></div>
+</div>
                 </div>
 
                 <div class="modal-bottom-section">
